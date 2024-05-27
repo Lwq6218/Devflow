@@ -42,8 +42,7 @@ body {
   }
 
   .primary-gradient {
-    /* background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%); */
-    background: linear-gradient(129deg, #004cff 0%, #82b6f2 100%);
+    background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
   }
 
   .dark-gradient {
@@ -55,7 +54,7 @@ body {
   }
 
   .tab {
-    @apply min-h-full dark:bg-dark-400 bg-light-800 text-light-500 dark:data-[state=active]:bg-dark-300 data-[state=active]:bg-primary-200 data-[state=active]:text-primary-500 !important;
+    @apply min-h-full dark:bg-dark-400 bg-light-800 text-light-500 dark:data-[state=active]:bg-dark-300 data-[state=active]:bg-primary-100 data-[state=active]:text-primary-500 !important;
   }
 }
 
@@ -64,10 +63,8 @@ body {
 }
 
 .active-theme {
-  /* filter: invert(53%) sepia(98%) saturate(3332%) hue-rotate(0deg)
-    brightness(104%) contrast(106%) !important; */
-  filter: invert(53%) sepia(98%) saturate(3332%) hue-rotate(200deg)
-    brightness(84%) contrast(156%) !important;
+  filter: invert(53%) sepia(98%) saturate(3332%) hue-rotate(0deg)
+    brightness(104%) contrast(106%) !important;
 }
 
 .light-gradient {
@@ -79,8 +76,7 @@ body {
 }
 
 .primary-text-gradient {
-  /* background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%); */
-  background: linear-gradient(129deg, #004cff 0%, #82b6f2 100%);
+  background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -129,8 +125,7 @@ code {
   hyphens: auto;
 
   padding: 2px;
-  /* color: #ff7000 !important; */
-  color: #004cff !important;
+  color: #ff7000 !important;
 }
 
 .markdown pre {
@@ -149,8 +144,7 @@ code {
 
 /* Clerk */
 .cl-internal-b3fm6y {
-  /* background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%) !important; */
-  background: linear-gradient(129deg, #004cff 0%, #82b6f2 100%) !important;
+  background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%) !important;
 }
 
 .hash-span {
