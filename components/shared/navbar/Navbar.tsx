@@ -36,8 +36,8 @@ export default function Navbar() {
             }}
           />
         </SignedIn>
+        <MobileNav />
       </div>
-      <MobileNav />
     </nav>
   );
 }
