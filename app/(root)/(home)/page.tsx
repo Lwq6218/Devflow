@@ -5,47 +5,12 @@ import LocalSearchbar from "@/components/shared/LocalSearchbar";
 import NotResult from "@/components/shared/NotResult";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filter";
+import { getQuestions } from "@/lib/actions/question.action";
 import Link from "next/link";
 
-export default function Home() {
-  const questions = [
-    {
-      _id: "12345",
-      title: "如何使用 TypeScript 接口?",
-      tags: [
-        { _id: "1", name: "TypeScript" },
-        { _id: "2", name: "编程" },
-      ],
-      author: {
-        _id: "1",
-        name: "张三",
-        picture: "https://example.com/picture.jpg",
-      },
-      upvotes: 1231313,
-      views: 12800,
-      answers: [
-        {
-          _id: "1",
-          content: "你可以使用接口来定义对象的结构。",
-          author: {
-            _id: "1",
-            name: "李四",
-          },
-          createdAt: new Date("2023-05-27T12:34:56Z"),
-        },
-        {
-          _id: "1",
-          content: "接口在 TypeScript 中非常有用。",
-          author: {
-            _id: "3",
-            name: "王五",
-          },
-          createdAt: new Date("2023-05-28T14:22:10Z"),
-        },
-      ],
-      createdAt: new Date("2023-05-28T14:22:10Z"),
-    },
-  ];
+export default async function Home() {
+  const result = await getQuestions({});
+  console.log(result);
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
@@ -72,8 +37,8 @@ export default function Home() {
       </div>
       <HomeFilter />
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.length > 0 ? (
-          questions.map((question) => (
+        {result.questions.length > 0 ? (
+          result.questions.map((question) => (
             <QuestionCard
               key={question._id}
               _id={question._id}
