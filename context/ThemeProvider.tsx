@@ -28,7 +28,6 @@ export default function ThemeProvider({
   useEffect(() => {
     handleThemeChange();
   }, [mode]);
-  console.log("mode", mode);
 
   return (
     <ThemeContext.Provider value={{ mode, setMode }}>
