@@ -42,7 +42,6 @@ export default function Profile({ clerkId, user }: Props) {
 
   async function onSubmit(values: z.infer<typeof ProfileSchema>) {
     setIsSubmitting(true);
-
     try {
       await updateUser({
         clerkId,

@@ -14,7 +14,7 @@ export async function viewQuestion(params: ViewQuestionParams) {
     const question = await Question.findById(questionId);
 
     if (!question) {
-      console.log("Question not found");
+      console.log("Question not found------");
       return;
     }
 

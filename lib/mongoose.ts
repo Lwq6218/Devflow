@@ -7,7 +7,7 @@ export const connectToDatabase = async () => {
     return console.log("MONGODB_URI is not defined");
   }
   if (isConnected) {
-    return console.log("MongoDB is already connected");
+    return;
   }
   try {
     await mongoose.connect(process.env.MONGODB_URL, {
