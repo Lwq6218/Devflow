@@ -1,5 +1,6 @@
 "use server";
 
+import Tag from "@/database/tag.model";
 import { connectToDatabase } from "../mongoose";
 import { GetAllTagsParams, GetTopInteractedTagsParams } from "./shared.types";
 import User from "@/database/user.model";
@@ -36,6 +37,21 @@ export async function getAllTags(params: GetAllTagsParams) {
       { _id: "3", name: "Docker" },
     ];
     return { tags };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+export async function getTOpPopularTags() {
+  try {
+    connectToDatabase();
+
+    const popularTags = await Tag.aggregate([
+      { $project: { name: 1, numberOfQuestions: { $size: "$questions" } } },
+      { $sort: { numberOfQuestions: -1 } },
+      { $limit: 5 },
+    ]);
+    return popularTags;
   } catch (error) {
     console.log(error);
     throw error;
