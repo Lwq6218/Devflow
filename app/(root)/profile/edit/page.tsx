@@ -14,7 +14,7 @@ export default async function Page() {
       <h1 className="h1-bold text-dark100_light900">Profile</h1>
 
       <div className="mt-9">
-        <Profile clerkId={userId} user={JSON.stringify(mongoUser)} />
+        <Profile clerkId={JSON.stringify(userId)} user={JSON.stringify(mongoUser)} />
       </div>
     </>
   );
