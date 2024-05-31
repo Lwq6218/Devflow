@@ -2,7 +2,7 @@ import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilter from "@/components/home/HomeFilter";
 import Filter from "@/components/shared/Filter";
 import LocalSearchbar from "@/components/shared/LocalSearchbar";
-import NotResult from "@/components/shared/NotResult";
+import NotResult from "@/components/shared/NoResult";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filter";
 import { getQuestions } from "@/lib/actions/question.action";
@@ -26,7 +26,7 @@ export default async function Home() {
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
           placeholder="Search for questions"
-          otherClases="flex-1"
+          otherClasses="flex-1"
         />
         <Filter
           filters={HomePageFilters}
