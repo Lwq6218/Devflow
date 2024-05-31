@@ -7,7 +7,7 @@ interface Props extends SearchParamsProps {
   clerkId: string;
 }
 export default async function QuestionTab({
-  searchProps,
+  searchParams,
   userId,
   clerkId,
 }: Props) {
