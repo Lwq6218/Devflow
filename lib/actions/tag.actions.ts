@@ -2,7 +2,11 @@
 
 import Tag, { ITag } from "@/database/tag.model";
 import { connectToDatabase } from "../mongoose";
-import { GetAllTagsParams, GetQuestionsByTagIdParams, GetTopInteractedTagsParams } from "./shared.types";
+import {
+  GetAllTagsParams,
+  GetQuestionsByTagIdParams,
+  GetTopInteractedTagsParams,
+} from "./shared.types";
 import User from "@/database/user.model";
 import { FilterQuery } from "mongoose";
 import Question from "@/database/question.model";
@@ -32,12 +36,11 @@ export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
 export async function getAllTags(params: GetAllTagsParams) {
   try {
     connectToDatabase();
-    const { searchQuery, filter } = params;
+    const { searchQuery, filter, page = 1, pageSize = 1 } = params;
+    const skipAmount = (page - 1) * pageSize;
     const query: FilterQuery<typeof Tag> = {};
     if (searchQuery) {
-      query.$or = [
-        { name: { $regex: new RegExp(searchQuery, "i") } }
-      ]
+      query.$or = [{ name: { $regex: new RegExp(searchQuery, "i") } }];
     }
     let sortOptions = {};
     switch (filter) {
@@ -56,8 +59,14 @@ export async function getAllTags(params: GetAllTagsParams) {
       default:
         break;
     }
-    const tags = await Tag.find(query).sort(sortOptions);
-    return { tags };
+    const tags = await Tag.find(query)
+      .skip(skipAmount)
+      .limit(pageSize)
+      .sort(sortOptions);
+    const totalTags = await Tag.countDocuments(query);
+    const isNext = totalTags > skipAmount + tags.length;
+
+    return { tags, isNext };
   } catch (error) {
     console.log(error);
     throw error;
@@ -82,7 +91,7 @@ export async function getQuestionByTagId(params: GetQuestionsByTagIdParams) {
   try {
     connectToDatabase();
 
-    const { tagId, searchQuery, page = 1, pageSize = 10 } = params;
+    const { tagId, searchQuery, page = 1, pageSize = 1 } = params;
 
     // Calculate the number of posts to skip based on the page number and page size
     const skipAmount = (page - 1) * pageSize;
