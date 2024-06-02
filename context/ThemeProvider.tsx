@@ -27,7 +27,6 @@ export default function ThemeProvider({
   };
   useEffect(() => {
     handleThemeChange();
-    console.log(mode);
   }, [mode]);
 
   return (

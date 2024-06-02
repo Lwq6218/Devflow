@@ -5,15 +5,19 @@ import Link from "next/link";
 import { TagFilters } from "@/constants/filter";
 import LocalSearchbar from "@/components/shared/LocalSearchbar";
 import NoResult from "@/components/shared/NoResult";
-export default async function page() {
-  const result = await getAllTags({});
+import { SearchParamsProps } from "@/types";
+export default async function page({searchParams}:SearchParamsProps) {
+  const result = await getAllTags({
+    searchQuery: searchParams.q,
+    filter: searchParams.filter,
+  });
   return (
     <>
       <h1 className="h1-bold text-dark100_light900">All Tags</h1>
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
         <LocalSearchbar
-          route="/community"
+          route="/tags"
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
           placeholder="Search for tags"
@@ -43,7 +47,7 @@ export default async function page() {
 
                 <p className="small-medium text-dark400_light500 mt-3.5">
                   <span className="body-semibold primary-text-gradient mr-2.5">
-                    0+
+                    {tag.questions.length}+
                   </span>{" "}
                   Questions
                 </p>
