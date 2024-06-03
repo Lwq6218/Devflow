@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import {
   Select,
   SelectContent,
@@ -23,17 +23,16 @@ export default function Filter({
   otherClasses,
   containerClasses,
 }: Props) {
-
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const paramFilter = searchParams.get('filter')
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const paramFilter = searchParams.get("filter");
   const handleUpdateParams = (value: string) => {
     const newUrl = formUrlQuery({
       params: searchParams.toString(),
-      key: 'filter',
-      value
-    })
-    router.push(newUrl, { scroll: false })
+      key: "filter",
+      value,
+    });
+    router.push(newUrl, { scroll: false });
   };
   return (
     <div className={`relative ${containerClasses} `}>
@@ -51,7 +50,11 @@ export default function Filter({
         <SelectContent className="text-dark500_light700 small-regular border-none bg-light-900 dark:bg-dark-300">
           <SelectGroup>
             {filters.map((filter) => (
-              <SelectItem key={filter.value} value={filter.value}>
+              <SelectItem
+                className="cursor-pointer focus:bg-light-800 dark:focus:bg-dark-400"
+                key={filter.value}
+                value={filter.value}
+              >
                 {filter.name}
               </SelectItem>
             ))}

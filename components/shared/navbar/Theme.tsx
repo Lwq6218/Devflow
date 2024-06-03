@@ -38,7 +38,7 @@ export default function Theme() {
           {themes.map((theme) => {
             return (
               <MenubarItem
-                className="flex items-center gap-4 px-2.5 py-2"
+                className="flex cursor-pointer items-center gap-4 px-2.5 py-2 focus:bg-light-800 dark:focus:bg-dark-400"
                 key={theme.value}
                 onClick={() => {
                   setMode(theme.value);

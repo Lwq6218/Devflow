@@ -82,7 +82,7 @@ export default async function page({ params, searchParams }: URLProps) {
         reputation={userInfo.reputation}
         totalQuestions={userInfo.totalQuestions}
         totalAnswers={userInfo.totalAnswers}
-        // badges={userInfo.badgeCounts}
+        badges={userInfo.badgeCounts}
       />
 
       <div className="mt-10 flex gap-10">

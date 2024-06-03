@@ -6,7 +6,7 @@ import "./globals.css";
 import "../styles/prism.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ThemeProvider from "@/context/ThemeProvider";
-
+import NextTopLoader from "nextjs-toploader";
 export const metadata: Metadata = {
   title: "Devflow",
   description:
@@ -41,7 +41,10 @@ export default function RootLayout({
             },
           }}
         >
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <NextTopLoader color="#FF7000" />
+            {children}
+          </ThemeProvider>
         </ClerkProvider>
       </body>
     </html>

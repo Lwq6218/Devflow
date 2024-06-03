@@ -18,36 +18,34 @@ export default function LocalSearchbar({
   placeholder,
   otherClasses,
 }: Props) {
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const query = searchParams.get('q')
-  const [search, setSearch] = useState(query || "")
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const query = searchParams.get("q");
+  const [search, setSearch] = useState(query || "");
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (search) {
         const newUrl = formUrlQuery({
           params: searchParams.toString(),
-          key: 'q',
-          value: search
-        })
-        router.push(newUrl,{scroll:false})
-      }else{
-        if(pathname === route){
+          key: "q",
+          value: search,
+        });
+        router.push(newUrl, { scroll: false });
+      } else {
+        if (pathname === route) {
           const newUrl = removeKeysFromQuery({
             params: searchParams.toString(),
-            keysToRemove: ['q'],
-          })
+            keysToRemove: ["q"],
+          });
 
-        router.push(newUrl,{scroll:false})
+          router.push(newUrl, { scroll: false });
         }
       }
-    }, 300)
-    return () => clearTimeout(delayDebounceFn)
-  }, [search, route, pathname, router, searchParams, query])
- console.log(pathname);
- console.log(route);
-  
+    }, 300);
+    return () => clearTimeout(delayDebounceFn);
+  }, [search, route, pathname, router, searchParams, query]);
+
   return (
     <div
       className={`background-light800_darkgradient flex
@@ -66,8 +64,10 @@ export default function LocalSearchbar({
         type="text"
         placeholder={placeholder}
         value={search}
-        onChange={(e) => { setSearch(e.target.value) }}
-        className="paragraph-regular no-focus placeholder border-none bg-transparent shadow-none outline-none"
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
+        className="paragraph-regular no-focus placeholder text-dark400_light700 border-none bg-transparent shadow-none outline-none"
       />
 
       {iconPosition === "right" && (

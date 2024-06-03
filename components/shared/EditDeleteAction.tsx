@@ -4,6 +4,17 @@ import { deleteAnswer } from "@/lib/actions/answer.action";
 import { deleteQuestion } from "@/lib/actions/question.action";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 interface Props {
   type: string;
@@ -46,15 +57,32 @@ export default function EditDeleteAction({ type, itemId }: Props) {
           onClick={handleEdit}
         />
       )}
-
-      <Image
-        src="/assets/icons/trash.svg"
-        alt="Delete"
-        width={14}
-        height={14}
-        className="cursor-pointer object-contain"
-        onClick={handleDelete}
-      />
+      <AlertDialog>
+        <AlertDialogTrigger>
+          <Image
+            src="/assets/icons/trash.svg"
+            alt="Delete"
+            width={14}
+            height={14}
+            className="cursor-pointer object-contain"
+          />
+        </AlertDialogTrigger>
+        <AlertDialogContent className="background-light900_dark300 text-dark200_light900">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction className="bg-red-600" onClick={handleDelete}>
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

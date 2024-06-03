@@ -21,20 +21,19 @@ export async function createAnswer(params: CreateAnswerParams) {
     const newAnswer = await Answer.create({ content, author, question });
 
     // Add the answer to the question's answers array
-    await Question.findByIdAndUpdate(question, {
+    const questionObject = await Question.findByIdAndUpdate(question, {
       $push: { answers: newAnswer._id },
     });
 
-    // TODO: Add interaction...
-    // await Interaction.create({
-    //   user: author,
-    //   action: "answer",
-    //   question,
-    //   answer: newAnswer._id,
-    //   tags: questionObject.tags,
-    // });
+    await Interaction.create({
+      user: author,
+      action: "answer",
+      question,
+      answer: newAnswer._id,
+      tags: questionObject.tags,
+    });
 
-    // await User.findByIdAndUpdate(author, { $inc: { reputation: 10 } });
+    await User.findByIdAndUpdate(author, { $inc: { reputation: 10 } });
 
     revalidatePath(path);
   } catch (error) {
@@ -108,7 +107,6 @@ export async function upvoteAnswer(params: AnswerVoteParams) {
       throw new Error("Answer not found");
     }
 
-    // Increment author's reputation bt +10 for upvoting a question
     await User.findByIdAndUpdate(userId, {
       $inc: { reputation: hasupVoted ? -2 : 2 },
     });
@@ -151,7 +149,6 @@ export async function downvoteAnswer(params: AnswerVoteParams) {
       throw new Error("Answer not found");
     }
 
-    // Increment author's reputation bt +10 for upvoting a question
     await User.findByIdAndUpdate(userId, {
       $inc: { reputation: hasdownVoted ? -2 : 2 },
     });
