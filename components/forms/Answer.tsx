@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
@@ -33,7 +32,7 @@ export default function Answer({ question, questionId, authorId }: Props) {
   });
   const { mode } = useTheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmittingAI, setIsSubmittingAI] = useState(false);
+  // const [isSubmittingAI, setIsSubmittingAI] = useState(false);
   const handleCreateAnswer = async (values: z.infer<typeof AnswerSchema>) => {
     setIsSubmitting(true);
     try {
@@ -74,11 +73,11 @@ export default function Answer({ question, questionId, authorId }: Props) {
   // };
   return (
     <div>
-      <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
-        <h4 className="paragraph-semibold text-dark400_light800">
-          Write your answer here
-        </h4>
-
+      {/* <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center sm:gap-2"> */}
+      <h4 className="paragraph-semibold text-dark400_light800">
+        Write your answer here
+      </h4>
+      {/* 
         <Button
           className="btn light-border-2 gap-1.5 rounded-md px-4 py-2.5 text-primary-500 shadow-none dark:text-primary-500"
           onClick={() => {}}
@@ -91,8 +90,8 @@ export default function Answer({ question, questionId, authorId }: Props) {
             className="object-contain"
           />
           {isSubmittingAI ? "Generating..." : "Generate an AI Answer"}
-        </Button>
-      </div>
+        </Button> */}
+      {/* </div> */}
 
       <Form {...form}>
         <form
