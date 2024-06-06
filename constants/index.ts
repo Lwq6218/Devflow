@@ -5,6 +5,7 @@ export const themes = [
   { value: "dark", labbel: "Dark", icon: "/assets/icons/moon.svg" },
   { value: "system", labbel: "System", icon: "/assets/icons/computer.svg" },
 ];
+
 export const sidebarLinks: SidebarLink[] = [
   {
     imgURL: "/assets/icons/home.svg",
